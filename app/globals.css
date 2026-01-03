@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
 }
 
 @theme inline {
@@ -15,7 +15,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #000000;
   }
 }
 
@@ -23,4 +23,36 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Forçar texto preto globalmente. Exceções: elementos explicitamente marcados como .text-white
+   (Tailwind) serão mantidos brancos por regra separada abaixo. Usamos !important para
+   garantir aplicação consistente sobre utilitários que definem cores.
+*/
+body, body * {
+  color: #000000 !important;
+}
+
+/* Preservar classes que explicitamente usam texto branco (Tailwind `.text-white`) */
+.text-white {
+  color: #ffffff !important;
+}
+
+/* Placeholder em cinza escuro */
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: #4b5563 !important; /* cinza escuro */
+  opacity: 1 !important;
+}
+
+/* Em alguns browsers, placeholder usa pseudo-elementos diferentes */
+::-webkit-input-placeholder { color: #4b5563 !important; opacity: 1 !important; }
+::-moz-placeholder { color: #4b5563 !important; opacity: 1 !important; }
+:-ms-input-placeholder { color: #4b5563 !important; opacity: 1 !important; }
+:-moz-placeholder { color: #4b5563 !important; opacity: 1 !important; }
+
+/* Evitar que inputs do tipo button/submit tenham texto forçado preto — permitir que classes prevaleçam */
+button, input[type="button"], input[type="submit"] {
+  color: inherit;
 }
