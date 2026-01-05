@@ -47,3 +47,4 @@ Sim / Não?
 Assim eu te entrego tudo conectado.
 
 # mvp
+# ead-platform
